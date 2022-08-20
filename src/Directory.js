@@ -4,7 +4,6 @@
 //
 // TODO: un-hardcode listing. Maybe also don't shove like 70% of my sub preferences onto open internet
 
-import _ from 'underscore';
 import { DelayedLink } from "./DelayedLink";
 
 const listing = [
@@ -54,8 +53,7 @@ function DirectoryMember(props) {
 }
 
 function Directory() {
-  const shuffledListing = _.sortBy(listing, (member) => Math.random());
-  const listingDiv = shuffledListing.map(
+  const listingDiv = listing.map(
     (member) => <div key={member}> <DirectoryMember member={member} /></div>);
   return (
     <div className="Directory">

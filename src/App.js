@@ -1,6 +1,5 @@
 import './App.css';
 import { Outlet } from "react-router-dom";
-import Directory from './Directory';
 
 function App() {
   return (
