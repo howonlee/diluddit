@@ -5,7 +5,7 @@
 // TODO: un-hardcode listing. Maybe also don't shove like 70% of my sub preferences onto open internet
 
 import _ from 'underscore';
-import { Routes, Route, Link } from "react-router-dom";
+import { DelayedLink } from "./DelayedLink";
 
 const listing = [
   "accounting",
@@ -50,13 +50,13 @@ const listing = [
 
 function DirectoryMember(props) {
   const url = `/r/${props.member}`;
-  return <div><Link to={url}>{props.member}</Link></div>
+  return <DelayedLink to={url}>{props.member}</DelayedLink>
 }
 
 function Directory() {
   const shuffledListing = _.sortBy(listing, (member) => Math.random());
   const listingDiv = shuffledListing.map(
-    (member) => <DirectoryMember member={member} />);
+    (member) => <div key={member}> <DirectoryMember member={member} /></div>);
   return (
     <div className="Directory">
       {listingDiv}
