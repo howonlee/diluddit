@@ -49,7 +49,8 @@ const listing = [
 ];
 
 function DirectoryMember(props) {
-  return <div>{props.member}</div>;
+  const url = `/r/${props.member}`;
+  return <div><Link to={url}>{props.member}</Link></div>
 }
 
 function Directory() {
