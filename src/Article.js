@@ -3,4 +3,4 @@ function Article({ id36 }) {
   return null;
 }
 
-export default Sub;
+export default Article;
