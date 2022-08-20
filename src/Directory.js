@@ -45,8 +45,12 @@ const listing = [
   "warcollege"
 ];
 
+function DirectoryMember(props) {
+  return <li>bloop {props.member}</li>;
+}
+
 function Directory() {
-  const listingDiv = listing.map((member) => <li>{member}</li>);
+  const listingDiv = listing.map((member) => <DirectoryMember member={member} />);
   return (
     <div className="Directory">
     <ul>{listingDiv}</ul>
