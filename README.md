@@ -4,6 +4,6 @@ Dilution of reddit. By 'dilution' I mean injection of latency, see [this](https:
 
 A lot of stuff is hardcoded to the idiosyncrasies of how I like stuff. If you want to de-hardcode it PR's are welcome. I won't add auth and posting, tho, so don't ask.
 
-Not an official reddit project.
+Not an official reddit project. No affiliation with reddit in any way, shape or form whatsoever. MIT licensed.
 
 Devmode is `npm start`, tests are `npm test`, build is `npm run build`
