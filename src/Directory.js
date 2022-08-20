@@ -4,7 +4,7 @@
 //
 // TODO: un-hardcode listing. Maybe also don't shove like 70% of my sub preferences onto open internet
 
-let listing = [
+const listing = [
   "accounting",
   "argentina",
   "artisanvideos",
@@ -44,3 +44,14 @@ let listing = [
   "totalwar",
   "warcollege"
 ];
+
+function Directory() {
+  const listingDiv = listing.map((member) => <li>{member}</li>);
+  return (
+    <div className="Directory">
+    <ul>{listingDiv}</ul>
+    </div>
+  );
+}
+
+export default Directory;
