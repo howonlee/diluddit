@@ -1,4 +1,7 @@
+import React, { useState } from 'react';
+import axios from 'axios';
 import { Outlet, useParams } from "react-router-dom";
+
 
 function SubredditParent() {
   return <Outlet />;
