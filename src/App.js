@@ -1,4 +1,5 @@
 import './App.css';
+import { Routes, Route, Link } from "react-router-dom";
 import Directory from './Directory';
 
 function App() {
@@ -6,8 +7,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Diluddit</h1>
-        <Directory />
       </header>
+      <section className="App-section">
+        <Routes>
+          <Route path="/" element={<Directory />} />
+        </Routes>
+      </section>
     </div>
   );
 }
