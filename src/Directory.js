@@ -4,6 +4,7 @@
 //
 // TODO: un-hardcode listing. Maybe also don't shove like 70% of my sub preferences onto open internet
 
+import './Directory.css';
 import { DelayedLink } from "./DelayedLink";
 
 const listing = [
@@ -49,12 +50,12 @@ const listing = [
 
 function DirectoryMember(props) {
   const url = `/r/${props.member}`;
-  return <DelayedLink to={url}>{props.member}</DelayedLink>
+  return <DelayedLink to={url}>r/{props.member}</DelayedLink>
 }
 
 function Directory() {
   const listingDiv = listing.map(
-    (member) => <div key={member}> <DirectoryMember member={member} /></div>);
+    (member) => <div key={member} className="Directory-member"> <DirectoryMember member={member} /></div>);
   return (
     <div className="Directory">
       {listingDiv}

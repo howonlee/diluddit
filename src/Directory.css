@@ -1,0 +1,17 @@
+.Directory {
+  text-align: left;
+}
+
+.Directory-member {
+  border: solid black;
+}
+
+a {
+  color: white;
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  background: #666666;
+  text-decoration: none;
+}
