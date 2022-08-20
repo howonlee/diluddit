@@ -7,7 +7,8 @@ function SubredditParent() {
 // whole sub listing component, dealing with reddit's pagination too
 function Subreddit() {
   let params = useParams();
-  return <p>"lol lol" {params.subredditName}</p>;
+  let url = `https://www.reddit.com/r/${params.subredditName}.json`;
+  return <p>{url}</p>
 }
 
 export { SubredditParent, Subreddit };
