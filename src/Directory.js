@@ -49,7 +49,7 @@ const listing = [
 ];
 
 function DirectoryMember(props) {
-  return <li>bloop {props.member}</li>;
+  return <div>{props.member}</div>;
 }
 
 function Directory() {
@@ -58,7 +58,7 @@ function Directory() {
     (member) => <DirectoryMember member={member} />);
   return (
     <div className="Directory">
-    <ul>{listingDiv}</ul>
+      {listingDiv}
     </div>
   );
 }
