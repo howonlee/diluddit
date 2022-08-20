@@ -4,6 +4,8 @@
 //
 // TODO: un-hardcode listing. Maybe also don't shove like 70% of my sub preferences onto open internet
 
+import _ from 'underscore';
+
 const listing = [
   "accounting",
   "argentina",
@@ -50,7 +52,9 @@ function DirectoryMember(props) {
 }
 
 function Directory() {
-  const listingDiv = listing.map((member) => <DirectoryMember member={member} />);
+  const shuffledListing = _.sortBy(listing, (member) => Math.random());
+  const listingDiv = shuffledListing.map(
+    (member) => <DirectoryMember member={member} />);
   return (
     <div className="Directory">
     <ul>{listingDiv}</ul>
