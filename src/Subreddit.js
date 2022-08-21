@@ -1,12 +1,21 @@
 
 import './Subreddit.css';
 
+import { DelayedLink } from "./Utils";
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Outlet, useParams } from "react-router-dom";
 
+
 function ArticleEntry(props) {
-  return <div className="Article-member">{props.title}</div>
+  const params = useParams();
+  const ourUrl = `/r/${params.subredditName}/comments/${props.id}`;
+  return <div className="Article-member">
+    <DelayedLink to={ourUrl}>
+      {props.title}
+    </DelayedLink>
+  </div>
 }
 
 // whole sub listing component, dealing with reddit's pagination too
@@ -38,10 +47,11 @@ function Subreddit() {
     {loading && <div>Loading...</div>}
     {!loading && error && <div>Error: <span>{error}</span></div>}
     {!loading && !error && (<div>
-      {data.map((member) => <ArticleEntry title={member.title} />)}
+      {data.map((member) => {
+        return <ArticleEntry title={member.title} id={member.id} />})}
       </div>)}
     </div>
   );
 }
 
-export { Subreddit };
+export default Subreddit;
