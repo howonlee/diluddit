@@ -11,9 +11,9 @@
   background-color: #282c34;
   min-height: 20vh;
   display: flex;
-  flex-direction: column;
-  align-items: top;
-  justify-content: top;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
   font-size: calc(10px + 2vmin);
   color: white;
 }
