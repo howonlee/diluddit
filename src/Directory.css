@@ -3,7 +3,8 @@
 }
 
 .Directory-member {
-  border: solid black;
+  border-top: solid black;
+  border-bottom: solid black;
 }
 
 a {
@@ -12,6 +13,6 @@ a {
   height: 100%;
   width: 100%;
   padding: 30px;
-  background: #666666;
+  background: #111111;
   text-decoration: none;
 }
