@@ -22,7 +22,7 @@ function ArticleEntry(props) {
 function Subreddit() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const params = useParams();
   const url = `https://www.reddit.com/r/${params.subredditName}.json`;
 
