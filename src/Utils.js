@@ -1,10 +1,6 @@
 import React from "react";
 import { Outlet, useHref, useLinkClickHandler } from "react-router-dom";
 
-export const NilOutlet = function () {
-  return <Outlet />;
-};
-
 // This is mostly a copy-paste from the React Router impl.
 // React Router is MIT license, this repo is MIT.
 // Their license goes like this:
@@ -39,3 +35,13 @@ export const DelayedLink = React.forwardRef(
     );
   }
 );
+
+export const NilOutlet = function () {
+  return <Outlet />;
+};
+
+// We need a parent-saving bit to the toposort because we
+// want linearization of the reddit comment threads
+// As I said, basically like a 90's forum...
+export const ParentSavingToposort = function (nodes, edges) {
+}
