@@ -5,6 +5,11 @@ export const NilOutlet = function () {
   return <Outlet />;
 };
 
+// This is mostly a copy-paste from the React Router impl.
+// React Router is MIT license, this repo is MIT.
+// Their license goes like this:
+// https://github.com/remix-run/react-router/blob/main/LICENSE.md
+// Bam, copyright notice reproduced.
 export const DelayedLink = React.forwardRef(
   function DelayedLinkWithRef(
     { onClick, replace = false, state, target, to, ...rest },
