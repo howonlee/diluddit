@@ -1,5 +1,9 @@
 import React from "react";
-import { useHref, useLinkClickHandler } from "react-router-dom";
+import { Outlet, useHref, useLinkClickHandler } from "react-router-dom";
+
+export const NilOutlet = function () {
+  return <Outlet />;
+};
 
 export const DelayedLink = React.forwardRef(
   function DelayedLinkWithRef(

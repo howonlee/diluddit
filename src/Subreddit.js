@@ -5,11 +5,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Outlet, useParams } from "react-router-dom";
 
-
-function SubredditParent() {
-  return <Outlet />;
-}
-
 function ArticleEntry(props) {
   return <div className="Article-member">{props.title}</div>
 }
@@ -49,4 +44,4 @@ function Subreddit() {
   );
 }
 
-export { SubredditParent, Subreddit };
+export { Subreddit };

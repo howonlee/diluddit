@@ -5,7 +5,7 @@
 // TODO: un-hardcode listing. Maybe also don't shove like 70% of my sub preferences onto open internet
 
 import './Directory.css';
-import { DelayedLink } from "./DelayedLink";
+import { DelayedLink } from "./Utils";
 
 const listing = [
   "accounting",
