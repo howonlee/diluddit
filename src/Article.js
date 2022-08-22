@@ -3,12 +3,16 @@ import axios from 'axios';
 import { Outlet, useParams } from "react-router-dom";
 
 function Post(props) {
+  console.log(props.post);
+  return <div>lol post</div>;
 }
 
 function Comment(props) {
 }
 
 function Comments(props) {
+  console.log(props.comments);
+  return <div>lol comments</div>;
 }
 
 function Article() {
@@ -38,19 +42,10 @@ function Article() {
     fetchData();
   }, []);
 
-  ///////////
-  ///////////
-  ///////////
-
   return (<div>
-    
-    <Post />
-    <Comments />
-    </div>)
-
-  console.log(post);
-  console.log(comments);
-  return <p>"lol lol" {params.subredditName}</p>;
+    <Post post={post}/>
+    <Comments comments={comments}/>
+    </div>);
 }
 
 export default Article;
