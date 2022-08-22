@@ -38,6 +38,16 @@ function Article() {
     fetchData();
   }, []);
 
+  ///////////
+  ///////////
+  ///////////
+
+  return (<div>
+    
+    <Post />
+    <Comments />
+    </div>)
+
   console.log(post);
   console.log(comments);
   return <p>"lol lol" {params.subredditName}</p>;
