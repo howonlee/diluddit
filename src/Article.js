@@ -3,16 +3,23 @@ import axios from 'axios';
 import { Outlet, useParams } from "react-router-dom";
 
 function Post(props) {
-  console.log(props.post);
-  return <div>lol post</div>;
+  let postData = props?.post?.data?.children[0]?.data;
+  return (<div>
+    <div>{postData?.title}</div>
+    <div>{postData?.selftext}</div>
+    <div>{postData?.media}</div>
+    </div>);
 }
 
 function Comment(props) {
+  let body = props?.member?.body;
+  return (<div>{body}</div>);
 }
 
 function Comments(props) {
-  console.log(props.comments);
-  return <div>lol comments</div>;
+  let commentData = props?.comments?.data?.children;
+  let commentList = commentData?.map((member) => <Comment key={member?.data?.id} member={member?.data} />);
+  return <div>{commentList}</div>;
 }
 
 function Article() {
