@@ -22,7 +22,6 @@
 .Comment {
   text-align: left;
   font-size: calc(10px + 1vmin);
-  padding: 15px;
   border-top: solid white 1px;
   border-bottom: solid white 1px;
 }

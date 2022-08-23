@@ -31,7 +31,7 @@ function Post(props) {
 
 function Comment(props) {
   let body = props?.member?.body;
-  return (<div className="Comment">{body}</div>);
+  return (<ReactMarkdown className="Comment">{body}</ReactMarkdown>);
 }
 
 function Comments(props) {
