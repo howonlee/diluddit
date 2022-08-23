@@ -4,7 +4,7 @@ import { Outlet, useParams } from "react-router-dom";
 
 function Post(props) {
   let postData = props?.post?.data?.children[0]?.data;
-  return (<div>
+  return (<div className="Post">
     <div>{postData?.title}</div>
     <div>{postData?.selftext}</div>
     <div>{postData?.media}</div>
@@ -13,13 +13,13 @@ function Post(props) {
 
 function Comment(props) {
   let body = props?.member?.body;
-  return (<div>{body}</div>);
+  return (<div className="Comment">{body}</div>);
 }
 
 function Comments(props) {
   let commentData = props?.comments?.data?.children;
   let commentList = commentData?.map((member) => <Comment key={member?.data?.id} member={member?.data} />);
-  return <div>{commentList}</div>;
+  return <div className="Comment-list">{commentList}</div>;
 }
 
 function Article() {
