@@ -4,7 +4,7 @@ Dilution of reddit. By 'dilution' I mean injection of latency, see [this](https:
 
 A lot of stuff is hardcoded to the idiosyncrasies of how I like stuff. If you want to de-hardcode it PR's are welcome.
 
-I won't add auth and posting, tho, so don't ask. Fork if you want to.
+I won't add auth and posting (anything that makes me deal with CORS), tho, so don't ask. Fork if you want to.
 
 Not an official reddit project. No affiliation with reddit in any way, shape or form whatsoever. MIT licensed.
 
