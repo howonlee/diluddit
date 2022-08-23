@@ -10,11 +10,16 @@ function PostImage(props) {
 
 function Post(props) {
   let postData = props?.post?.data?.children[0]?.data;
+  console.log(postData);
   let postUrl = postData?.url;
-  let postLink = isImage(postUrl) ? (
-    <PostImage url={postUrl} />
-  ) : (
-    <a href={postUrl}>{"Link"}</a>);
+  let postLink = '';
+  if (isImage(postUrl)) {
+    postLink = <PostImage url={postUrl} />;
+  } else if (postData?.domain.startsWith("self")) {
+    postLink = <div />;
+  } else {
+    postLink = <a href={postUrl}>{"Link"}</a>;
+  }
   return (<div className="Post">
     <div className="Post-title">{postData?.title}</div>
     <div>{postData?.selftext}</div>
