@@ -45,3 +45,7 @@ export const NilOutlet = function () {
 // As I said, basically like a 90's forum...
 export const ParentSavingToposort = function (nodes, edges) {
 }
+
+export const isImage = function(url) {
+  return /\.(jpg|jpeg|png|webp|gif|svg)$/.test(url);
+};

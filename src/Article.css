@@ -4,6 +4,16 @@
   padding: 15px;
 }
 
+.Post-image {
+  object-fit: contain;
+}
+
+.Post-title {
+  text-align: center;
+  font-size: calc(10px + 4vmin);
+  padding: 25px;
+}
+
 .Comment {
   text-align: left;
   font-size: calc(10px + 1vmin);
