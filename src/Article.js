@@ -50,8 +50,6 @@ function Article() {
       try {
         const {data: newData} = await axios.get(redditUrl);
         const [post, comments] = newData;
-        console.log("fuck shit fuck");
-        console.log(post);
         setPost(post);
         setComments(comments);
       } catch (currError) {
