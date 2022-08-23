@@ -4,6 +4,10 @@
   padding: 15px;
 }
 
+.SelfText a {
+  color: #bbbbbb;
+}
+
 .Post-image {
   object-fit: contain;
   max-width: 100%;
@@ -21,6 +25,11 @@
   padding: 15px;
   border-top: solid white 1px;
   border-bottom: solid white 1px;
+}
+
+a.Comment {
+  color: #cccccc;
+  background: #111111;
 }
 
 .Comment-list {

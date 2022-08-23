@@ -1,5 +1,6 @@
 import './Article.css';
 import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 import { isImage } from './Utils';
 import { useParams } from "react-router-dom";
@@ -22,7 +23,7 @@ function Post(props) {
   }
   return (<div className="Post">
     <div className="Post-title">{postData?.title}</div>
-    <div>{postData?.selftext}</div>
+    <ReactMarkdown className="SelfText">{postData?.selftext}</ReactMarkdown>
     <div>{postData?.media}</div>
     <div>{postLink}</div>
     </div>);
@@ -47,7 +48,7 @@ function Article() {
   const [comments, setComments] = useState({});
   const subname = params.subredditName;
   const id36 = params.id36;
-  const redditUrl = `https://www.reddit.com/r/${subname}/comments/${id36}.json`
+  const redditUrl = `https://www.reddit.com/r/${subname}/comments/${id36}.json?raw_json=1`
 
   useEffect(() => {
     const fetchData = async () => {

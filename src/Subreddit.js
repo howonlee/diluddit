@@ -24,7 +24,7 @@ function Subreddit() {
   const [error, setError] = useState("");
   const [data, setData] = useState([]);
   const params = useParams();
-  const url = `https://www.reddit.com/r/${params.subredditName}/new.json`;
+  const url = `https://www.reddit.com/r/${params.subredditName}/new.json?raw_json=1`;
 
   useEffect(() => {
     const fetchData = async () => {

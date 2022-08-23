@@ -5,3 +5,11 @@
   border-bottom: solid white 1px;
   background: #111111;
 }
+
+.Article-member a {
+  color: white;
+  display: block;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+}
