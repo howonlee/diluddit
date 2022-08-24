@@ -53,6 +53,13 @@ function Post(props) {
     </div>);
 }
 
+function CommentParentQuote(props) {
+  /////
+  /////
+  /////
+  /////
+}
+
 function Comment(props) {
   let body = props?.member?.body;
   return (<ReactMarkdown className="Comment">{body}</ReactMarkdown>);
