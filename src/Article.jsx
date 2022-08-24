@@ -45,33 +45,46 @@ function PostImage({ url }) {
 }
 
 PostImage.propTypes = {
-  url: PropTypes.string
-}
+  url: PropTypes.string.isRequired,
+};
 
 // TODO: Make this less abominably jank,
 // probably by reconstructing the iframe thing
 // instead of just using the literal html of the one reddit gives us
-function PostMedia(props) {
-  const { media } = props;
+function PostMedia({ media }) {
   return <div dangerouslySetInnerHTML={{ __html: media?.oembed?.html }} />;
 }
 
-function PostLink(props) {
-  const linkIsImage = isImage(props.postUrl);
-  const linkIsSelf = props.domain.startsWith('self');
-  const linkIsMedia = props.media;
+PostMedia.propTypes = {
+  media: PropTypes.string.isRequired,
+};
+
+function PostLink({ postUrl, domain, media }) {
+  const linkIsImage = isImage(postUrl);
+  const linkIsSelf = domain.startsWith('self');
+  const linkIsMedia = media;
 
   return (
     <div>
-      {linkIsImage && <PostImage url={props.postUrl} />}
-      {linkIsMedia && <PostMedia media={props.media} />}
-      {!linkIsImage && !linkIsSelf && !linkIsMedia && <a href={props.postUrl}>Link</a>}
+      {linkIsImage && <PostImage url={postUrl} />}
+      {linkIsMedia && <PostMedia media={media} />}
+      {!linkIsImage && !linkIsSelf && !linkIsMedia && <a href={postUrl}>Link</a>}
     </div>
   );
 }
 
-function Post(props) {
-  const postData = props?.post?.data?.children[0]?.data;
+PostLink.propTypes = {
+  postUrl: PropTypes.string.isRequired,
+  domain: PropTypes.string.isRequired,
+  media: PropTypes.string,
+};
+
+PostLink.defaultProps = {
+  media: '',
+};
+
+function Post({ post }) {
+  const postData = post?.data?.children[0]?.data;
   const postUrl = postData?.url;
   return (
     <div className="Post">
@@ -81,6 +94,10 @@ function Post(props) {
     </div>
   );
 }
+
+Post.propTypes = {
+  post: PropTypes.object.isRequired,
+};
 
 function Comment(props) {
   const body = props?.member?.body;
