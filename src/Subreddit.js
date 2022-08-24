@@ -44,7 +44,7 @@ function Subreddit() {
   const [data, setData] = useState([]);
   const [after, setAfter] = useState("");
   const params = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _] = useSearchParams();
 
   const url = `https://www.reddit.com/r/${params.subredditName}/new.json`;
 
@@ -53,7 +53,6 @@ function Subreddit() {
       setLoading(true);
       try {
         let redditParams = prepRedditParams(searchParams);
-        console.log(redditParams);
         const {data: newData} = await axios.get(url, {params: redditParams});
         setAfter(newData?.data?.after);
         let children = newData?.data?.children;

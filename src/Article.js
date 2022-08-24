@@ -9,22 +9,29 @@ function PostImage(props) {
   return <img className="Post-image" alt={""} src={props.url} />;
 }
 
+function PostLink(props) {
+  const linkIsImage = isImage(props.postUrl);
+  const linkIsSelf = props.domain.startsWith("self");
+  return (<div>
+    {linkIsImage && !linkIsSelf && <PostImage url={props.postUrl} />}
+    {!linkIsImage && linkIsSelf && <div />}
+    {!linkIsImage && !linkIsSelf && <a href={props.postUrl}>Link</a>}
+    </div>);
+}
+
+function Media(props) {
+  const media = props.media;
+  return <div dangerouslySetInnerHTML={{__html: media?.oembed?.html}} />;
+}
+
 function Post(props) {
   let postData = props?.post?.data?.children[0]?.data;
   let postUrl = postData?.url;
-  let postLink = '';
-  if (isImage(postUrl)) {
-    postLink = <PostImage url={postUrl} />;
-  } else if (postData?.domain.startsWith("self")) {
-    postLink = <div />;
-  } else {
-    postLink = <a href={postUrl}>{"Link"}</a>;
-  }
   return (<div className="Post">
     <div className="Post-title">{postData?.title}</div>
     <ReactMarkdown className="SelfText">{postData?.selftext}</ReactMarkdown>
-    <div>{postData?.media}</div>
-    <div>{postLink}</div>
+    <PostLink postUrl={postUrl} domain={postData?.domain} />
+    <Media media={postData?.media} />
     </div>);
 }
 
