@@ -16,10 +16,8 @@ function LinearizeCommentTree (root) {
     // toplevel case
     if (currNode?.data?.children) {
       for (const child of currNode?.data?.children) {
-        let parentedChild = child;
-        parentedChild["currParent"] = prevNode;
-        stack.push(parentedChild);
-        res.push(parentedChild);
+        stack.push(child);
+        res.push(child);
       }
     }
 
