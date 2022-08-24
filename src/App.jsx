@@ -4,6 +4,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 function App() {
   const nav = useNavigate();
+  /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <div className="App">
       <header className="App-header">
@@ -15,6 +16,7 @@ function App() {
       </section>
     </div>
   );
+  /* eslint-enable jsx-a11y/anchor-is-valid */
 }
 
 export default App;
