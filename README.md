@@ -6,7 +6,7 @@ I haven't implemented the usual NSFW filtering and warning stuff yet, so caveat 
 
 A lot of stuff is hardcoded to the idiosyncrasies of how I like stuff. If you want to de-hardcode it PR's are welcome.
 
-I won't add auth and posting (anything that makes me deal with CORS), tho, so don't ask. Fork if you want to.
+I won't add auth and posting (anything that makes me deal with CORS), tho, so don't ask. I also actually like karma being invisible forever and the subreddit view on `new` without options. Fork if you want to.
 
 Not an official reddit project. No affiliation with reddit in any way, shape or form whatsoever. MIT licensed. This is not a serious project, but I am actually using it, so contributions will be accepted and dealt with completely arbitrarily and in an arbitrarily procrastinatory manner.
 
