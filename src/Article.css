@@ -26,7 +26,7 @@
   border-bottom: solid white 1px;
 }
 
-a.Comment {
+.Comment a {
   color: #cccccc;
   background: #111111;
 }
