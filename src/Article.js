@@ -6,10 +6,14 @@ import { isImage } from './Utils';
 import { useParams } from "react-router-dom";
 
 function LinearizeCommentTree (root) {
+  // They're always true trees, so no need for even a toposort, this is a parent-keeping search
   let res = []
   let stack = [root]
   let prevNode = null;
   let currNode = null;
+  // Cardinality of what you actually get from the reddit API is like, hundreds tops, looks like
+  // More gets loaded from a separate endpoint
+  // So, no popping stack fears
   while (stack.length > 0) {
     prevNode = currNode;
     currNode = stack.pop()
@@ -33,10 +37,6 @@ function LinearizeCommentTree (root) {
     }
   }
   return res;
-}
-
-// Linearize by executing the parent-quoting linearization and then sorting by time
-function LinearizeCommentList(commentList) {
 }
 
 function PostImage(props) {
@@ -106,8 +106,7 @@ function Article() {
         const {data: newData} = await axios.get(redditUrl);
         const [post, comments] = newData;
         setPost(post);
-        let linearizedComments = LinearizeCommentTree(comments);
-        console.log(linearizedComments);
+        let linearizedComments = LinearizeCommentTree(comments).sort((fst, snd) => fst?.data?.created_utc < snd?.data?.created_utc);
         setComments(linearizedComments);
       } catch (currError) {
         setError(currError.message);
