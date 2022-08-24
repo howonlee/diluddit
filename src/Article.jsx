@@ -58,7 +58,7 @@ function PostMedia({ media }) {
 }
 
 PostMedia.propTypes = {
-  media: PropTypes.string.isRequired,
+  media: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
 };
 
 function PostLink({ postUrl, domain, media }) {
@@ -78,7 +78,7 @@ function PostLink({ postUrl, domain, media }) {
 PostLink.propTypes = {
   postUrl: PropTypes.string.isRequired,
   domain: PropTypes.string.isRequired,
-  media: PropTypes.string,
+  media: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 PostLink.defaultProps = {
@@ -91,6 +91,7 @@ function Post({ post }) {
   return (
     <div className="Post">
       <div className="Post-title">{postData?.title}</div>
+      <div className="Post-author">{postData?.author}</div>
       <ReactMarkdown className="SelfText">{postData?.selftext}</ReactMarkdown>
       <PostLink postUrl={postUrl} domain={postData?.domain} media={postData?.media} />
     </div>
@@ -105,6 +106,7 @@ function Comment({ member, currParent }) {
   const body = member?.body;
   return (
     <div className="Comment">
+      <span className="Comment-author">{member.author}</span>
       {currParent && <ReactMarkdown className="CommentParentQuote">{currParent?.data?.body}</ReactMarkdown>}
       <ReactMarkdown>{body}</ReactMarkdown>
     </div>

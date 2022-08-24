@@ -1,6 +1,6 @@
 .Article-member {
   text-align: left;
-  padding: 15px;
+  padding: 10px;
   border-top: solid white 1px;
   border-bottom: solid white 1px;
   background: #111111;
@@ -12,6 +12,10 @@
   text-decoration: none;
   height: 100%;
   width: 100%;
+}
+
+.Article-author {
+  font-size: 10px;
 }
 
 .Subreddit-name {

@@ -19,6 +19,12 @@
   padding: 25px;
 }
 
+.Post-author {
+  text-align: center;
+  font-size: calc(10px + 1vmin);
+  padding: 5px;
+}
+
 .Comment {
   text-align: left;
   font-size: calc(10px + 1vmin);
@@ -34,6 +40,11 @@
 .CommentParentQuote {
   color: #aaaaaa;
   background: #333333;
+}
+
+.Comment-author {
+  color: #cccccc;
+  font-size: 10px;
 }
 
 .Comment-list {
