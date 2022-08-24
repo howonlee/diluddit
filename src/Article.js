@@ -71,21 +71,18 @@ function Post(props) {
     </div>);
 }
 
-function CommentParentQuote(props) {
-  /////
-  /////
-  /////
-  /////
-}
-
 function Comment(props) {
   let body = props?.member?.body;
-  return (<ReactMarkdown className="Comment">{body}</ReactMarkdown>);
+  let currParent = props?.currParent;
+  return (<div className="Comment">
+    {currParent && <ReactMarkdown className="CommentParentQuote">{currParent?.data?.body}</ReactMarkdown>}
+    <ReactMarkdown>{body}</ReactMarkdown>
+  </div>);
 }
 
 function Comments(props) {
   let commentData = props?.comments;
-  let commentList = commentData?.map((member) => <Comment key={member?.data?.id} member={member?.data} />);
+  let commentList = commentData?.map((member) => <Comment key={member?.data?.id} member={member?.data} currParent={member?.currParent} />);
   return <div className="Comment-list">{commentList}</div>;
 }
 
