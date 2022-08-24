@@ -8,13 +8,18 @@ import { useParams } from "react-router-dom";
 function LinearizeCommentTree (root) {
   let res = []
   let stack = [root]
+  let prevNode = null;
   let currNode = null;
   while (stack.length > 0) {
+    prevNode = currNode;
     currNode = stack.pop()
-    // add to root thing...
-    // shove stuff in...
-    // we need the parent...
+    for (const children in currNode?.children) {
+      // add the parent as prevNode...
+      // add to the stack
+      // add to the res
+    }
   }
+  return res;
 }
 
 // Linearize by executing the parent-quoting linearization and then sorting by time
