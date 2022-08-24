@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Outlet, useHref, useLinkClickHandler } from 'react-router-dom';
 
 // This is mostly a copy-paste from the React Router impl.
@@ -6,6 +7,7 @@ import { Outlet, useHref, useLinkClickHandler } from 'react-router-dom';
 // Their license goes like this:
 // https://github.com/remix-run/react-router/blob/main/LICENSE.md
 // Bam, copyright notice reproduced.
+/* eslint-disable react/require-default-props */
 export const DelayedLink = React.forwardRef(
   (
     {
@@ -24,7 +26,7 @@ export const DelayedLink = React.forwardRef(
     }
 
     return (
-      // eslint-disable-next-line jsx-a11y/anchor-has-content
+      /* eslint-disable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading */
       <a
         {...rest}
         href={href}
@@ -32,9 +34,19 @@ export const DelayedLink = React.forwardRef(
         ref={ref}
         target={target}
       />
+      /* eslint-enable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading */
     );
   },
 );
+
+DelayedLink.propTypes = {
+  onClick: PropTypes.func,
+  replace: PropTypes.bool,
+  state: PropTypes.any,
+  target: PropTypes.any,
+  to: PropTypes.string.isRequired,
+};
+/* eslint-enable react/require-default-props */
 
 export function NilOutlet() {
   return <Outlet />;
