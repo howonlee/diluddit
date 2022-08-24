@@ -19,6 +19,7 @@ function PostLink(props) {
     </div>);
 }
 
+// TODO: Make this less abominably jank, probably by reconstructing the iframe thing instead of just using the literal html of the one reddit gives us
 function Media(props) {
   const media = props.media;
   return <div dangerouslySetInnerHTML={{__html: media?.oembed?.html}} />;
