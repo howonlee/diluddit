@@ -1,21 +1,27 @@
 import './Subreddit.css';
 
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { DelayedLink } from './Utils';
 
-function ArticleEntry(props) {
+function ArticleEntry({ id, title }) {
   const params = useParams();
-  const ourUrl = `/r/${params.subredditName}/comments/${props.id}`;
+  const ourUrl = `/r/${params.subredditName}/comments/${id}`;
   return (
     <div className="Article-member">
       <DelayedLink to={ourUrl}>
-        {props.title}
+        {title}
       </DelayedLink>
     </div>
   );
 }
+
+ArticleEntry.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 function prepRedditParams(searchParams) {
   const res = {
@@ -27,9 +33,8 @@ function prepRedditParams(searchParams) {
   return res;
 }
 
-function NextButton(props) {
+function NextButton({ after }) {
   const params = useParams();
-  const after = props?.after;
   const nextUrl = `/r/${params.subredditName}/?after=${after}`;
   return (
     <div className="Article-member">
@@ -38,6 +43,10 @@ function NextButton(props) {
   );
 }
 
+NextButton.propTypes = {
+  after: PropTypes.string.isRequired,
+};
+
 // whole sub listing component, dealing with reddit's pagination too
 function Subreddit() {
   const [loading, setLoading] = useState(true);
@@ -45,7 +54,7 @@ function Subreddit() {
   const [data, setData] = useState([]);
   const [after, setAfter] = useState('');
   const params = useParams();
-  const [searchParams, _] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const url = `https://www.reddit.com/r/${params.subredditName}/new.json`;
 
