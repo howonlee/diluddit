@@ -5,7 +5,7 @@ import { DelayedLink } from "./Utils";
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Outlet, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 function ArticleEntry(props) {
@@ -18,19 +18,31 @@ function ArticleEntry(props) {
   </div>
 }
 
+function prepRedditParams(ourParams) {
+  let res = {
+    raw_json: 1,
+  };
+  if (ourParams.after) {
+    res["after"] = ourParams.after;
+  }
+  return res;
+}
+
 // whole sub listing component, dealing with reddit's pagination too
 function Subreddit() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [data, setData] = useState([]);
   const params = useParams();
-  const url = `https://www.reddit.com/r/${params.subredditName}/new.json?raw_json=1`;
+
+  const url = `https://www.reddit.com/r/${params.subredditName}/new.json`;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const {data: newData} = await axios.get(url);
+        let redditParams = prepRedditParams(params);
+        const {data: newData} = await axios.get(url, redditParams);
         let children = newData?.data?.children;
         let res = children.map((member) => member?.data);
         setData(res);
@@ -41,7 +53,7 @@ function Subreddit() {
       }
     };
     fetchData();
-  }, []);
+  }, [url, params]);
   return (
     <div>
     {loading && <div>Loading...</div>}
