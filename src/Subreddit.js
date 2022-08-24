@@ -5,7 +5,7 @@ import { DelayedLink } from "./Utils";
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 
 function ArticleEntry(props) {
@@ -18,14 +18,23 @@ function ArticleEntry(props) {
   </div>
 }
 
-function prepRedditParams(ourParams) {
+function prepRedditParams(searchParams) {
   let res = {
     raw_json: 1,
   };
-  if (ourParams.after) {
-    res["after"] = ourParams.after;
+  if (searchParams.get("after")) {
+    res["after"] = searchParams.get("after");
   }
   return res;
+}
+
+function NextButton(props) {
+  const params = useParams();
+  const after = props?.after
+  const nextUrl = `/r/${params.subredditName}/?after=${after}`
+  return (<div className="Article-member">
+    <DelayedLink to={nextUrl}>More...</DelayedLink>
+    </div>);
 }
 
 // whole sub listing component, dealing with reddit's pagination too
@@ -33,7 +42,9 @@ function Subreddit() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [data, setData] = useState([]);
+  const [after, setAfter] = useState("");
   const params = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const url = `https://www.reddit.com/r/${params.subredditName}/new.json`;
 
@@ -41,8 +52,10 @@ function Subreddit() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        let redditParams = prepRedditParams(params);
-        const {data: newData} = await axios.get(url, redditParams);
+        let redditParams = prepRedditParams(searchParams);
+        console.log(redditParams);
+        const {data: newData} = await axios.get(url, {params: redditParams});
+        setAfter(newData?.data?.after);
         let children = newData?.data?.children;
         let res = children.map((member) => member?.data);
         setData(res);
@@ -62,6 +75,7 @@ function Subreddit() {
       {data.map((member) => {
         return <ArticleEntry title={member.title} id={member.id} />})}
       </div>)}
+      <NextButton after={after} />
     </div>
   );
 }

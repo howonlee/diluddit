@@ -11,7 +11,6 @@ function PostImage(props) {
 
 function Post(props) {
   let postData = props?.post?.data?.children[0]?.data;
-  console.log(postData);
   let postUrl = postData?.url;
   let postLink = '';
   if (isImage(postUrl)) {
