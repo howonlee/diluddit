@@ -99,9 +99,8 @@ Post.propTypes = {
   post: PropTypes.object.isRequired,
 };
 
-function Comment(props) {
-  const body = props?.member?.body;
-  const currParent = props?.currParent;
+function Comment({ member, currParent }) {
+  const body = member?.body;
   return (
     <div className="Comment">
       {currParent && <ReactMarkdown className="CommentParentQuote">{currParent?.data?.body}</ReactMarkdown>}
@@ -110,11 +109,27 @@ function Comment(props) {
   );
 }
 
-function Comments(props) {
-  const commentData = props?.comments;
-  const commentList = commentData?.map((member) => <Comment key={member?.data?.id} member={member?.data} currParent={member?.currParent} />);
+Comment.propTypes = {
+  member: PropTypes.object.isRequired,
+  currParent: PropTypes.object.isRequired,
+};
+
+function Comments({ comments }) {
+  const commentList = comments?.map(
+    (member) => (
+      <Comment
+        key={member?.data?.id}
+        member={member?.data}
+        currParent={member?.currParent}
+      />
+    ),
+  );
   return <div className="Comment-list">{commentList}</div>;
 }
+
+Comments.propTypes = {
+  comments: PropTypes.array.isRequired,
+};
 
 function Article() {
   const params = useParams();
@@ -131,9 +146,10 @@ function Article() {
       setLoading(true);
       try {
         const { data: newData } = await axios.get(redditUrl);
-        const [post, comments] = newData;
-        setPost(post);
-        const linearizedComments = LinearizeCommentTree(comments).sort((fst, snd) => fst?.data?.created_utc < snd?.data?.created_utc);
+        const [newPost, newComments] = newData;
+        setPost(newPost);
+        const linearizedComments = LinearizeCommentTree(newComments)
+          .sort((fst, snd) => fst?.data?.created_utc < snd?.data?.created_utc);
         setComments(linearizedComments);
       } catch (currError) {
         setError(currError.message);
