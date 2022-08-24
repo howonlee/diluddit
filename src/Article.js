@@ -5,6 +5,22 @@ import axios from 'axios';
 import { isImage } from './Utils';
 import { useParams } from "react-router-dom";
 
+function LinearizeCommentTree (root) {
+  let res = []
+  let stack = [root]
+  let currNode = null;
+  while (stack.length > 0) {
+    currNode = stack.pop()
+    // add to root thing...
+    // shove stuff in...
+    // we need the parent...
+  }
+}
+
+// Linearize by executing the parent-quoting linearization and then sorting by time
+function LinearizeCommentList(commentList) {
+}
+
 function PostImage(props) {
   return <img className="Post-image" alt={""} src={props.url} />;
 }
