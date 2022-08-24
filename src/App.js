@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1><a href="#" onClick={() => nav(-1)}>&#x2190;</a></h1>
-        <h1><Link to="/">Diluddit</Link></h1>
+        <h2><a href="#" onClick={() => nav(-1)}>&#x2190;</a></h2>
+        <h2><Link to="/">Diluddit</Link></h2>
       </header>
       <section className="App-section">
         <Outlet />

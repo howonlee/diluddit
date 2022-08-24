@@ -71,6 +71,7 @@ function Subreddit() {
     {loading && <div>Loading...</div>}
     {!loading && error && <div>Error: <span>{error}</span></div>}
     {!loading && !error && (<div>
+      <h2 className="Subreddit-name">{params.subredditName}</h2>
       {data.map((member) => {
         return <ArticleEntry title={member.title} id={member.id} />})}
       <NextButton after={after} />
