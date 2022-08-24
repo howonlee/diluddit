@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { isImage } from './Utils';
 
 function LinearizeCommentTree(root) {
+  /* eslint-disable no-loop-func */
   // They're always true trees, so no need for even a toposort, this is a parent-keeping search
   const res = [];
   const stack = [root];
@@ -38,6 +39,7 @@ function LinearizeCommentTree(root) {
     }
   }
   return res;
+  /* eslint-enable no-loop-func */
 }
 
 function PostImage({ url }) {
