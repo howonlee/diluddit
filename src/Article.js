@@ -9,20 +9,22 @@ function PostImage(props) {
   return <img className="Post-image" alt={""} src={props.url} />;
 }
 
+// TODO: Make this less abominably jank, probably by reconstructing the iframe thing instead of just using the literal html of the one reddit gives us
+function PostMedia(props) {
+  const media = props.media;
+  return <div dangerouslySetInnerHTML={{__html: media?.oembed?.html}} />;
+}
+
 function PostLink(props) {
   const linkIsImage = isImage(props.postUrl);
   const linkIsSelf = props.domain.startsWith("self");
+  const linkIsMedia = props.media;
+  
   return (<div>
-    {linkIsImage && !linkIsSelf && <PostImage url={props.postUrl} />}
-    {!linkIsImage && linkIsSelf && <div />}
-    {!linkIsImage && !linkIsSelf && <a href={props.postUrl}>Link</a>}
+    {linkIsImage && <PostImage url={props.postUrl} />}
+    {linkIsMedia && <PostMedia media={props.media} />}
+    {!linkIsImage && !linkIsSelf && !linkIsMedia && <a href={props.postUrl}>Link</a>}
     </div>);
-}
-
-// TODO: Make this less abominably jank, probably by reconstructing the iframe thing instead of just using the literal html of the one reddit gives us
-function Media(props) {
-  const media = props.media;
-  return <div dangerouslySetInnerHTML={{__html: media?.oembed?.html}} />;
 }
 
 function Post(props) {
@@ -31,8 +33,7 @@ function Post(props) {
   return (<div className="Post">
     <div className="Post-title">{postData?.title}</div>
     <ReactMarkdown className="SelfText">{postData?.selftext}</ReactMarkdown>
-    <PostLink postUrl={postUrl} domain={postData?.domain} />
-    <Media media={postData?.media} />
+    <PostLink postUrl={postUrl} domain={postData?.domain} media={postData?.media} />
     </div>);
 }
 

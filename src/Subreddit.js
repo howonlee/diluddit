@@ -73,8 +73,8 @@ function Subreddit() {
     {!loading && !error && (<div>
       {data.map((member) => {
         return <ArticleEntry title={member.title} id={member.id} />})}
-      </div>)}
       <NextButton after={after} />
+      </div>)}
     </div>
   );
 }
