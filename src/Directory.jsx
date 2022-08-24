@@ -6,6 +6,7 @@
 // Maybe also don't shove like 70% of my sub preferences onto open internet
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Directory.css';
 import { DelayedLink } from './Utils';
 
@@ -50,15 +51,19 @@ const listing = [
   'warcollege',
 ];
 
-function DirectoryMember(props) {
-  const url = `/r/${props.member}`;
+function DirectoryMember({ member }) {
+  const url = `/r/${member}`;
   return (
     <DelayedLink to={url}>
       r/
-      {props.member}
+      {member}
     </DelayedLink>
   );
 }
+
+DirectoryMember.propTypes = {
+  member: PropTypes.object.isRequired,
+};
 
 function Directory() {
   const listingDiv = listing.map(
