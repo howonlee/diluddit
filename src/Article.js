@@ -13,10 +13,25 @@ function LinearizeCommentTree (root) {
   while (stack.length > 0) {
     prevNode = currNode;
     currNode = stack.pop()
-    for (const children in currNode?.children) {
-      // add the parent as prevNode...
-      // add to the stack
-      // add to the res
+    // toplevel case
+    if (currNode?.data?.children) {
+      for (const child of currNode?.data?.children) {
+        let parentedChild = child;
+        parentedChild["currParent"] = prevNode;
+        stack.push(parentedChild);
+        res.push(parentedChild);
+      }
+    }
+
+    // reply case
+    let replyChildren = currNode?.data?.replies?.data?.children;
+    if (replyChildren) {
+      for (const child of replyChildren) {
+        let parentedChild = child;
+        parentedChild["currParent"] = prevNode;
+        stack.push(parentedChild);
+        res.push(parentedChild);
+      }
     }
   }
   return res;
@@ -71,7 +86,7 @@ function Comment(props) {
 }
 
 function Comments(props) {
-  let commentData = props?.comments?.data?.children;
+  let commentData = props?.comments;
   let commentList = commentData?.map((member) => <Comment key={member?.data?.id} member={member?.data} />);
   return <div className="Comment-list">{commentList}</div>;
 }
@@ -93,7 +108,9 @@ function Article() {
         const {data: newData} = await axios.get(redditUrl);
         const [post, comments] = newData;
         setPost(post);
-        setComments(comments);
+        let linearizedComments = LinearizeCommentTree(comments);
+        console.log(linearizedComments);
+        setComments(linearizedComments);
       } catch (currError) {
         setError(currError.message);
       } finally {
