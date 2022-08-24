@@ -36,10 +36,8 @@ export const DelayedLink = React.forwardRef(
   },
 );
 
-export const NilOutlet = function () {
+export function NilOutlet() {
   return <Outlet />;
-};
+}
 
-export const isImage = function (url) {
-  return /\.(jpg|jpeg|png|webp|gif|svg)$/.test(url);
-};
+export const isImage = (url) => /\.(jpg|jpeg|png|webp|gif|svg)$/.test(url);

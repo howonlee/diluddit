@@ -1,5 +1,6 @@
 import './Article.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -19,31 +20,37 @@ function LinearizeCommentTree(root) {
     currNode = stack.pop();
     // toplevel case
     if (currNode?.data?.children) {
-      for (const child of currNode?.data?.children) {
+      currNode?.data?.children?.forEach((child) => {
         stack.push(child);
         res.push(child);
-      }
+      });
     }
 
     // reply case
     const replyChildren = currNode?.data?.replies?.data?.children;
     if (replyChildren) {
-      for (const child of replyChildren) {
+      replyChildren.forEach((child) => {
         const parentedChild = child;
         parentedChild.currParent = prevNode;
         stack.push(parentedChild);
         res.push(parentedChild);
-      }
+      });
     }
   }
   return res;
 }
 
-function PostImage(props) {
-  return <img className="Post-image" alt="" src={props.url} />;
+function PostImage({ url }) {
+  return <img className="Post-image" alt="" src={url} />;
 }
 
-// TODO: Make this less abominably jank, probably by reconstructing the iframe thing instead of just using the literal html of the one reddit gives us
+PostImage.propTypes = {
+  url: PropTypes.string
+}
+
+// TODO: Make this less abominably jank,
+// probably by reconstructing the iframe thing
+// instead of just using the literal html of the one reddit gives us
 function PostMedia(props) {
   const { media } = props;
   return <div dangerouslySetInnerHTML={{ __html: media?.oembed?.html }} />;

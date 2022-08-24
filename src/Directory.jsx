@@ -2,8 +2,10 @@
 // There is no mixing of reddits.
 // The overall goal is to pretend it's 1999 and you're on a damn forum.
 //
-// TODO: un-hardcode listing. Maybe also don't shove like 70% of my sub preferences onto open internet
+// TODO: un-hardcode listing.
+// Maybe also don't shove like 70% of my sub preferences onto open internet
 
+import React from 'react';
 import './Directory.css';
 import { DelayedLink } from './Utils';
 
