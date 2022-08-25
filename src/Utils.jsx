@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Outlet, useHref, useLinkClickHandler } from 'react-router-dom';
 
-function schedule(cardinality, base = 2, power = 1.2, scaling = 0.1) {
+function schedule(cardinality, base = 2, power = 1.5, scaling = 0.1) {
   console.log(cardinality);
   const exponent = cardinality ** power;
   return base + (exponent * scaling);
@@ -37,6 +37,7 @@ export const DelayedLink = React.forwardRef(
       }
     }
 
+    // whole damn modal here...
     return (
       /* eslint-disable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading */
       <a
