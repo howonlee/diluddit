@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Outlet, useHref, useLinkClickHandler } from 'react-router-dom';
 
-function schedule(cardinality, base = 2, power = 1.8, scaling = 0.1) {
-  const exponent = Math.power(cardinality, power);
+function schedule(cardinality, base = 2, power = 1.2, scaling = 0.1) {
+  console.log(cardinality);
+  const exponent = cardinality ** power;
   return base + (exponent * scaling);
 }
 
@@ -26,12 +27,12 @@ export const DelayedLink = React.forwardRef(
       if (onClick) onClick(event);
       if (!event.defaultPrevented) {
         const date = new Date();
-        // const dateKey = date.toDateString();
-        // const numVisited = window.localstorage(get it)
-        // const pauseLength = schedule(numVisited)
-        // // wait here...
-        // window.loclstorage(store the numvisited again);
-        console.log('delay here....');
+        const dateKey = date.toDateString();
+        const numVisited = parseInt(window.localStorage.getItem(dateKey), 10) || 0;
+        const pauseLength = schedule(numVisited);
+        console.log('wait here...');
+        console.log(pauseLength);
+        window.localStorage.setItem(dateKey, numVisited + 1);
         internalOnClick(event);
       }
     }

@@ -62,7 +62,7 @@ function DirectoryMember({ member }) {
 }
 
 DirectoryMember.propTypes = {
-  member: PropTypes.object.isRequired,
+  member: PropTypes.string.isRequired,
 };
 
 function Directory() {
