@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Outlet, useHref, useLinkClickHandler } from 'react-router-dom';
 
 function schedule(cardinality, base = 2, power = 1.5, scaling = 0.1) {
-  console.log(cardinality);
   const exponent = cardinality ** power;
   return base + (exponent * scaling);
 }
