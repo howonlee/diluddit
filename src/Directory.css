@@ -7,6 +7,30 @@
   border-bottom: solid black;
 }
 
+.Listing-add-form input {
+  height: 100%;
+  font-size: calc(10px + 3vmin);
+  display: inline;
+  justify-content: space-evenly;
+}
+
+.Listing-add-form input[type=text] {
+  width: calc(80% - 20px);
+  border: 4px solid #888888;
+  background-color: #555555;
+  padding: 10px;
+  margin: 10px;
+}
+
+.Listing-add-form input[type=submit] {
+  width: calc(15% - 20px);
+  border: 4px solid #888888;
+  background-color: #555555;
+  color: #888888;
+  padding: 10px;
+  margin: 10px;
+}
+
 .Directory a {
   color: white;
   display: block;
