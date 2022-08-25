@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Outlet, useHref, useLinkClickHandler } from 'react-router-dom';
 
-// This is mostly a copy-paste from the React Router impl.
+function schedule(cardinality, base = 2, power = 1.8, scaling = 0.1) {
+  const exponent = Math.power(cardinality, power);
+  return base + (exponent * scaling);
+}
+
+// This is mostly a copy-paste from the React Router impl, futzed with.
 // React Router is MIT license, this repo is MIT.
 // Their license goes like this:
 // https://github.com/remix-run/react-router/blob/main/LICENSE.md
@@ -20,6 +25,12 @@ export const DelayedLink = React.forwardRef(
     function handleClick(event) {
       if (onClick) onClick(event);
       if (!event.defaultPrevented) {
+        const date = new Date();
+        // const dateKey = date.toDateString();
+        // const numVisited = window.localstorage(get it)
+        // const pauseLength = schedule(numVisited)
+        // // wait here...
+        // window.loclstorage(store the numvisited again);
         console.log('delay here....');
         internalOnClick(event);
       }
