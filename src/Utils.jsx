@@ -7,6 +7,13 @@ function schedule(cardinality, base = 2, power = 1.5, scaling = 0.1) {
   return base + (exponent * scaling);
 }
 
+function DelayModal() {
+  ///
+  ///
+  ///
+  ///
+}
+
 // This is mostly a copy-paste from the React Router impl, futzed with.
 // React Router is MIT license, this repo is MIT.
 // Their license goes like this:
