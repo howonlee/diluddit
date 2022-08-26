@@ -61,7 +61,8 @@ function Directory() {
     const init = JSON.parse(saved);
     return init || { listing: [] };
   });
-  const listingDiv = dirData.listing.map(
+  const dedupListing = new Set(dirData.listing);
+  const listingDiv = [...dedupListing].map(
     (member) => (
       <div key={member} className="Directory-member">
         {' '}
