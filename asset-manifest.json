@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/diluddit/static/css/main.6e17d6e3.css",
+    "main.js": "/diluddit/static/js/main.5e330812.js",
+    "index.html": "/diluddit/index.html",
+    "main.6e17d6e3.css.map": "/diluddit/static/css/main.6e17d6e3.css.map",
+    "main.5e330812.js.map": "/diluddit/static/js/main.5e330812.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6e17d6e3.css",
+    "static/js/main.5e330812.js"
+  ]
+}
