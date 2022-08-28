@@ -62,7 +62,7 @@ function Directory() {
     return init || { listing: [] };
   });
   const dedupListing = new Set(dirData.listing);
-  const listingDiv = [...dedupListing].map(
+  const listingDiv = [...dedupListing].sort().map(
     (member) => (
       <div key={member} className="Directory-member">
         {' '}
