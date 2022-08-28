@@ -63,7 +63,7 @@ export const DelayedLink = React.forwardRef(
             content: {
               background: '#333',
               color: 'white',
-              fontSize: '10vh',
+              fontSize: '3vh',
             },
           }}
           ariaHideApp={false}
