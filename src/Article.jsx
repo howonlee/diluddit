@@ -34,7 +34,7 @@ function LinearizeCommentTree(roots) {
 }
 
 function maybeTruncateParent(parentBody, len = 250) {
-  if (parentBody.length > len) {
+  if (parentBody?.length > len) {
     return `${parentBody.substring(0, len)}...`;
   }
   return parentBody;
@@ -119,7 +119,11 @@ function Comment({ member, currParent }) {
 
 Comment.propTypes = {
   member: PropTypes.object.isRequired,
-  currParent: PropTypes.object.isRequired,
+  currParent: PropTypes.object,
+};
+
+Comment.defaultProps = {
+  currParent: {},
 };
 
 function Comments({ comments }) {

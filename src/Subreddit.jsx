@@ -97,6 +97,7 @@ function Subreddit() {
         <h2 className="Subreddit-name">{params.subredditName}</h2>
         {data.map((member) => (
           <ArticleEntry
+            key={member.id}
             title={member.title}
             id={member.id}
             author={member.author}
