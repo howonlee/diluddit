@@ -76,6 +76,7 @@ function Subreddit() {
         setError(currError);
       } finally {
         setLoading(false);
+        window.scrollTo(0, 0);
       }
     };
     fetchData();
