@@ -17,12 +17,11 @@ function schedule(cardinality, base = 2, power = 1.2, scaling = 0.1) {
 export const DelayedLink = React.forwardRef(
   (
     {
-      onClick, replace = false, state, target, to, ...rest
+      onClick, state, target, to, ...rest
     },
     ref,
   ) => {
     const href = useHref(to);
-    const internalOnClick = useLinkClickHandler(to, { replace, state, target });
     const [modalIsOpen, setIsOpen] = useState(false);
 
     function openModal(time, event) {

@@ -14,5 +14,6 @@ This is definitely like, one single option in a full-featured reddit client but 
 
 Not an official reddit project. No affiliation with reddit in any way, shape or form whatsoever. MIT licensed. This is not a serious project, but I am actually using it, so contributions will be accepted and dealt with completely arbitrarily and in an arbitrarily procrastinatory manner
 
-Devmode is `npm start`, tests are `npm test`, build is `npm run build`. Deploy is `npm run deploy`.
+Note: You have to turn off 'enhanced tracking protection' on the site on Firefox because it's making CORS requests all willy-nilly. You can know Diluddit's not tracking you except insofar as Reddit is tracking you by inspecting the code, if you'd like.
 
+Devmode is `npm start`, tests are `npm test`, build is `npm run build`. Deploy is `npm run deploy`.

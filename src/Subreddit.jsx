@@ -28,6 +28,8 @@ ArticleEntry.propTypes = {
 function prepRedditParams(searchParams) {
   const res = {
     raw_json: 1,
+    sort: 'top',
+    t: 'week',
   };
   if (searchParams.get('after')) {
     res.after = searchParams.get('after');
@@ -58,7 +60,7 @@ function Subreddit() {
   const params = useParams();
   const [searchParams] = useSearchParams();
 
-  const url = `https://www.reddit.com/r/${params.subredditName}/new.json`;
+  const url = `https://www.reddit.com/r/${params.subredditName}/top.json`;
 
   useEffect(() => {
     const fetchData = async () => {
