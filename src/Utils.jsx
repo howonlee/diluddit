@@ -59,11 +59,15 @@ export const DelayedLink = React.forwardRef(
             overlay: {
               background: '#333',
               color: 'white',
+              height: '100vh',
+              width: '100vw',
             },
             content: {
               background: '#333',
               color: 'white',
-              fontSize: '3vh',
+              fontSize: '8vh',
+              height: '80vh',
+              width: '60vw',
             },
           }}
           ariaHideApp={false}
