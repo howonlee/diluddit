@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2><a href="#" onClick={() => nav(-1)}>&#x2190;</a></h2>
+        <h2 className="App-backarrow"><a href="#" onClick={() => nav(-1)}>&#x2190;</a></h2>
         <h2><Link to="/">Diluddit</Link></h2>
       </header>
       <section className="App-section">

@@ -15,7 +15,7 @@
 }
 
 .Listing-add-form input[type=text] {
-  width: calc(80% - 20px);
+  width: calc(60%);
   border: 4px solid #888888;
   background-color: #555555;
   padding: 10px;
@@ -23,7 +23,7 @@
 }
 
 .Listing-add-form input[type=submit] {
-  width: calc(15% - 20px);
+  width: calc(10%);
   border: 4px solid #888888;
   background-color: #555555;
   color: #888888;
