@@ -156,7 +156,7 @@ function Article() {
           .sort((fst, snd) => fst?.data?.created_utc < snd?.data?.created_utc);
         setComments(linearizedComments);
       } catch (currError) {
-        setError(currError.message);
+        setError(currError);
       } finally {
         setLoading(false);
       }
@@ -170,7 +170,9 @@ function Article() {
       {!loading && error && (
       <div>
         Error:
-        <span>{error}</span>
+        <div>{error.code}</div>
+        <div>{error.message}</div>
+        <div>{error.name}</div>
       </div>
       )}
       {!loading && !error && (

@@ -71,7 +71,7 @@ function Subreddit() {
         const res = children.map((member) => member?.data);
         setData(res);
       } catch (currError) {
-        setError(currError.message);
+        setError(currError);
       } finally {
         setLoading(false);
       }
@@ -84,7 +84,9 @@ function Subreddit() {
       {!loading && error && (
       <div>
         Error:
-        <span>{error}</span>
+        <div>{error.code}</div>
+        <div>{error.message}</div>
+        <div>{error.name}</div>
       </div>
       )}
       {!loading && !error && (
