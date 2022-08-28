@@ -6,33 +6,24 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { isImage } from './Utils';
 
-function LinearizeCommentTree(root) {
+function LinearizeCommentTree(roots) {
   /* eslint-disable no-loop-func */
   // They're always true trees, so no need for even a toposort, this is a parent-keeping search
-  const res = [];
-  const stack = [root];
-  let prevNode = null;
+  const res = [...roots];
+  const stack = [...roots];
   let currNode = null;
   // Cardinality of what you actually get from the reddit API is like, hundreds tops, looks like
   // More gets loaded from a separate endpoint
   // So, no popping stack fears
   while (stack.length > 0) {
-    prevNode = currNode;
     currNode = stack.pop();
-    // toplevel case
-    if (currNode?.data?.children) {
-      currNode?.data?.children?.forEach((child) => {
-        stack.push(child);
-        res.push(child);
-      });
-    }
 
     // reply case
     const replyChildren = currNode?.data?.replies?.data?.children;
     if (replyChildren) {
       replyChildren.forEach((child) => {
-        const parentedChild = child;
-        parentedChild.currParent = prevNode;
+        const parentedChild = { ...child };
+        parentedChild.currParent = currNode;
         stack.push(parentedChild);
         res.push(parentedChild);
       });
@@ -40,6 +31,13 @@ function LinearizeCommentTree(root) {
   }
   return res;
   /* eslint-enable no-loop-func */
+}
+
+function maybeTruncateParent(parentBody, len = 250) {
+  if (parentBody.length > len) {
+    return `${parentBody.substring(0, len)}...`;
+  }
+  return parentBody;
 }
 
 function PostImage({ url }) {
@@ -109,7 +107,11 @@ function Comment({ member, currParent }) {
     <div className="Comment">
       <span className="Comment-author">{member.author}</span>
       <span className="Comment-date">{date.toISOString()}</span>
-      {currParent && <ReactMarkdown className="CommentParentQuote">{currParent?.data?.body}</ReactMarkdown>}
+      {currParent && (
+        <ReactMarkdown className="CommentParentQuote">
+          {maybeTruncateParent(currParent?.data?.body)}
+        </ReactMarkdown>
+      )}
       <ReactMarkdown>{body}</ReactMarkdown>
     </div>
   );
@@ -154,8 +156,13 @@ function Article() {
         const { data: newData } = await axios.get(redditUrl);
         const [newPost, newComments] = newData;
         setPost(newPost);
-        const linearizedComments = LinearizeCommentTree(newComments)
-          .sort((fst, snd) => fst?.data?.created_utc > snd?.data?.created_utc);
+        const linearizedComments = LinearizeCommentTree(newComments?.data?.children)
+          .sort((fst, snd) => {
+            if (fst?.data?.created_utc > snd?.data?.created_utc) {
+              return 1;
+            }
+            return -1;
+          });
         const filteredComments = linearizedComments.filter((member) => {
           const res0 = typeof member === 'object';
           const res1 = res0 && !Array.isArray(member);
