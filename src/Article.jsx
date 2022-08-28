@@ -154,7 +154,8 @@ function Article() {
         setPost(newPost);
         const linearizedComments = LinearizeCommentTree(newComments)
           .sort((fst, snd) => fst?.data?.created_utc < snd?.data?.created_utc);
-        setComments(linearizedComments);
+        const filteredComments = linearizedComments.filter((member) => typeof member === 'object' && !Array.isArray(member) && member !== null);
+        setComments(filteredComments);
       } catch (currError) {
         setError(currError);
       } finally {
