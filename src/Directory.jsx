@@ -30,7 +30,7 @@ function ListingAddForm({ dirData, setDirData }) {
     <form
       className="Listing-add-form"
       onSubmit={(e) => {
-        dirData.listing.push(e.target[0].value);
+        dirData.listing.push(e.target[0].value.lower());
         setDirData(dirData);
         window.localStorage.setItem('dirData', JSON.stringify(dirData));
       }}
