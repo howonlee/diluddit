@@ -27,7 +27,6 @@ export const DelayedLink = React.forwardRef(
 
     function openModal(time, event) {
       setIsOpen(true);
-      console.log(time);
       setTimeout((ev) => {
         setIsOpen(false);
         window.location = ev.target.href;
