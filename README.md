@@ -10,4 +10,5 @@ I won't add auth and posting (anything that makes me deal with CORS), tho, so do
 
 Not an official reddit project. No affiliation with reddit in any way, shape or form whatsoever. MIT licensed. This is not a serious project, but I am actually using it, so contributions will be accepted and dealt with completely arbitrarily and in an arbitrarily procrastinatory manner
 
-Devmode is `npm start`, tests are `npm test`, build is `npm run build`
+Devmode is `npm start`, tests are `npm test`, build is `npm run build`. Deploy is `npm run deploy`.
+
