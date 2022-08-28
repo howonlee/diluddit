@@ -55,9 +55,20 @@ export const DelayedLink = React.forwardRef(
         />
         <Modal
           isOpen={modalIsOpen}
+          style={{
+            overlay: {
+              background: '#333',
+              color: 'white',
+            },
+            content: {
+              background: '#333',
+              color: 'white',
+              fontSize: '10vh',
+            },
+          }}
           ariaHideApp={false}
         >
-          <p>bloop bloop bloop</p>
+          <p>Diluting...</p>
         </Modal>
       </span>
       /* eslint-enable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading */
