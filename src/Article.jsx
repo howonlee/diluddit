@@ -86,10 +86,12 @@ PostLink.defaultProps = {
 function Post({ post }) {
   const postData = post?.data?.children[0]?.data;
   const postUrl = postData?.url;
+  const date = new Date(postData.created_utc * 1000);
   return (
     <div className="Post">
       <div className="Post-title">{postData?.title}</div>
       <div className="Post-author">{postData?.author}</div>
+      <div className="Post-date">{date.toISOString()}</div>
       <ReactMarkdown className="SelfText">{postData?.selftext}</ReactMarkdown>
       <PostLink postUrl={postUrl} domain={postData?.domain} media={postData?.media} />
     </div>

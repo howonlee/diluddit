@@ -6,12 +6,19 @@ import axios from 'axios';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { DelayedLink } from './Utils';
 
-function ArticleEntry({ id, title, author }) {
+function ArticleEntry({
+  id,
+  title,
+  author,
+  timestamp,
+}) {
   const params = useParams();
   const ourUrl = `/r/${params.subredditName}/comments/${id}`;
+  const date = new Date(timestamp * 1000);
   return (
     <div className="Article-member">
       <span className="Article-author">{author}</span>
+      <span className="Article-date">{date.toISOString()}</span>
       <DelayedLink to={ourUrl}>
         {title}
       </DelayedLink>
@@ -23,6 +30,7 @@ ArticleEntry.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  timestamp: PropTypes.number.isRequired,
 };
 
 function prepRedditParams(searchParams) {
@@ -101,6 +109,7 @@ function Subreddit() {
             title={member.title}
             id={member.id}
             author={member.author}
+            timestamp={member.created_utc}
           />
         ))}
         <NextButton after={after} />

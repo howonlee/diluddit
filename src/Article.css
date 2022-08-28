@@ -25,6 +25,12 @@
   padding: 5px;
 }
 
+.Post-date {
+  text-align: center;
+  font-size: 10px;
+  padding: 5px;
+}
+
 .Comment {
   text-align: left;
   font-size: calc(10px + 1vmin);
