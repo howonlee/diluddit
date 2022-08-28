@@ -162,8 +162,8 @@ function Article() {
         const { data: newData } = await axios.get(redditUrl);
         const [newPost, newComments] = newData;
         setPost(newPost);
-        const linearizedComments = LinearizeCommentTree(newComments?.data?.children)
-          .sort((fst, snd) => (fst.data.created_utc - snd.data.created_utc) || 0);
+        const linearizedComments = LinearizeCommentTree(newComments?.data?.children);
+        linearizedComments.sort((fst, snd) => (fst.data.created_utc - snd.data.created_utc) || 0);
         const filteredComments = linearizedComments.filter((member) => {
           const res0 = typeof member === 'object';
           const res1 = res0 && !Array.isArray(member);
