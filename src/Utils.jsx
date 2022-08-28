@@ -1,17 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import { Outlet, useHref, useLinkClickHandler } from 'react-router-dom';
 
 function schedule(cardinality, base = 2, power = 1.5, scaling = 0.1) {
   const exponent = cardinality ** power;
   return base + (exponent * scaling);
-}
-
-function DelayModal() {
-  ///
-  ///
-  ///
-  ///
 }
 
 // This is mostly a copy-paste from the React Router impl, futzed with.
@@ -29,30 +23,44 @@ export const DelayedLink = React.forwardRef(
   ) => {
     const href = useHref(to);
     const internalOnClick = useLinkClickHandler(to, { replace, state, target });
-    function handleClick(event) {
-      if (onClick) onClick(event);
-      if (!event.defaultPrevented) {
-        const date = new Date();
-        const dateKey = date.toDateString();
-        const numVisited = parseInt(window.localStorage.getItem(dateKey), 10) || 0;
-        const pauseLength = schedule(numVisited);
-        console.log('wait here...');
-        console.log(pauseLength);
-        window.localStorage.setItem(dateKey, numVisited + 1);
-        internalOnClick(event);
-      }
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal(time, event) {
+      setIsOpen(true);
+      console.log(time);
+      setTimeout((ev) => {
+        setIsOpen(false);
+        window.location = ev.target.href;
+      }, time * 1000, event);
     }
 
-    // whole damn modal here...
+    function handleClick(event) {
+      event.preventDefault();
+      const date = new Date();
+      const dateKey = date.toDateString();
+      const numVisited = parseInt(window.localStorage.getItem(dateKey), 10) || 0;
+      const pauseLength = schedule(numVisited);
+      window.localStorage.setItem(dateKey, numVisited + 1);
+      openModal(pauseLength, event);
+    }
+
     return (
       /* eslint-disable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading */
-      <a
-        {...rest}
-        href={href}
-        onClick={handleClick}
-        ref={ref}
-        target={target}
-      />
+      <span>
+        <a
+          {...rest}
+          href={href}
+          onClick={handleClick}
+          ref={ref}
+          target={target}
+        />
+        <Modal
+          isOpen={modalIsOpen}
+          ariaHideApp={false}
+        >
+          <p>bloop bloop bloop</p>
+        </Modal>
+      </span>
       /* eslint-enable jsx-a11y/anchor-has-content, react/jsx-props-no-spreading */
     );
   },

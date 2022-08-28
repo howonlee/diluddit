@@ -17,6 +17,7 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/forbid-prop-types": 0
+        "react/forbid-prop-types": 0,
+        "no-unused-vars": "warn"
     }
 }
