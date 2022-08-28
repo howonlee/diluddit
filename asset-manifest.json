@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/diluddit/static/css/main.049256f6.css",
-    "main.js": "/diluddit/static/js/main.394814b0.js",
+    "main.css": "/diluddit/static/css/main.b55afeed.css",
+    "main.js": "/diluddit/static/js/main.8bd24ddb.js",
     "index.html": "/diluddit/index.html",
-    "main.049256f6.css.map": "/diluddit/static/css/main.049256f6.css.map",
-    "main.394814b0.js.map": "/diluddit/static/js/main.394814b0.js.map"
+    "main.b55afeed.css.map": "/diluddit/static/css/main.b55afeed.css.map",
+    "main.8bd24ddb.js.map": "/diluddit/static/js/main.8bd24ddb.js.map"
   },
   "entrypoints": [
-    "static/css/main.049256f6.css",
-    "static/js/main.394814b0.js"
+    "static/css/main.b55afeed.css",
+    "static/js/main.8bd24ddb.js"
   ]
 }
