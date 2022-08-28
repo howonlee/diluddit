@@ -39,12 +39,12 @@ function ListingAddForm({ dirData, setDirData }) {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Add sub name"
+        placeholder="Subreddit name"
         aria-label="subname"
       />
       <input
         type="submit"
-        value="Submit"
+        value="Add"
       />
     </form>
   );
