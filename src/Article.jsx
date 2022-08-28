@@ -104,9 +104,11 @@ Post.propTypes = {
 
 function Comment({ member, currParent }) {
   const body = member?.body;
+  const date = new Date(member.created_utc * 1000);
   return (
     <div className="Comment">
       <span className="Comment-author">{member.author}</span>
+      <span className="Comment-date">{date.toISOString()}</span>
       {currParent && <ReactMarkdown className="CommentParentQuote">{currParent?.data?.body}</ReactMarkdown>}
       <ReactMarkdown>{body}</ReactMarkdown>
     </div>
