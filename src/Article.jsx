@@ -156,7 +156,13 @@ function Article() {
         setPost(newPost);
         const linearizedComments = LinearizeCommentTree(newComments)
           .sort((fst, snd) => fst?.data?.created_utc < snd?.data?.created_utc);
-        const filteredComments = linearizedComments.filter((member) => typeof member === 'object' && !Array.isArray(member) && member !== null);
+        const filteredComments = linearizedComments.filter((member) => {
+          const res0 = typeof member === 'object';
+          const res1 = res0 && !Array.isArray(member);
+          const res2 = res1 && member !== null;
+          const res3 = res2 && typeof member?.data?.body === 'string';
+          return res3;
+        });
         setComments(filteredComments);
       } catch (currError) {
         setError(currError);
