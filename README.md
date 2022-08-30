@@ -1,6 +1,6 @@
 Find it [here](https://howonlee.github.io/diluddit/). It's a normal mobile web app, no download required.
 
-Note: You have to turn off 'enhanced tracking protection' on the site on Firefox because it's making CORS requests all willy-nilly. You can know Diluddit's not tracking you except insofar as Reddit is tracking you by inspecting the code, if you'd like.
+Note: You have to turn off 'enhanced tracking protection' or 'strict tracking protection' on the site on Firefox and Edge (respectively) because it's making CORS requests all willy-nilly. You can know Diluddit's not tracking you except insofar as Reddit is tracking you by inspecting the code, if you'd like.
 
 # Diluddit
 
