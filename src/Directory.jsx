@@ -14,14 +14,15 @@ function DirectoryMember({ member, dirData, setDirData }) {
   /// take setDirData and mutate here..?
   const url = `/r/${member}`;
 
-  const deleteButton = function () {
+  function deleteButton() {
     const { listing } = dirData;
     const idx = listing.indexOf(member);
     listing.splice(idx, 1);
     const newDirData = { listing };
     setDirData(newDirData);
     window.localStorage.setItem('dirData', JSON.stringify(newDirData));
-  };
+  }
+
   return (
     <div className="Directory-member">
       <DelayedLink to={url}>
@@ -70,11 +71,15 @@ ListingAddForm.propTypes = {
   setDirData: PropTypes.func.isRequired,
 };
 
+const defaultListings = {
+  listing: ['art', 'askreddit', 'aww', 'books', 'food', 'movies', 'videos'],
+};
+
 function Directory() {
   const [dirData, setDirData] = useState(() => {
     const saved = window.localStorage.getItem('dirData');
     const init = JSON.parse(saved);
-    return init || { listing: [] };
+    return init || defaultListings;
   });
   const dedupListing = new Set(dirData.listing);
   const listingDiv = [...dedupListing].sort().map(
