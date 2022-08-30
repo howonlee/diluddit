@@ -5,6 +5,30 @@
 .Directory-member {
   border-top: solid black;
   border-bottom: solid black;
+  display: grid;
+  grid-template-columns: 90vw 10vw;
+  justify-content: space-between;
+}
+
+.Directory a {
+  color: white;
+  display: inline-block;
+  height: 100%;
+  width: 90vw;
+  padding: 30px;
+  background: #111111;
+  text-decoration: none;
+}
+
+.Directory button {
+  color: white;
+  font-weight: bolder;
+  font-size: 100%;
+  background: #111111;
+  border: solid #cccccc;
+  height: 100%;
+  width: 10vw;
+  padding: 15px;
 }
 
 .Listing-add-form input {
@@ -18,6 +42,7 @@
   width: calc(30vw);
   border: 2px solid #888888;
   background-color: #555555;
+  color: white;
   padding: 10px;
   margin: 10px;
 }
@@ -29,14 +54,4 @@
   color: #bbbbbb;
   padding: 10px;
   margin: 10px;
-}
-
-.Directory a {
-  color: white;
-  display: block;
-  height: 100%;
-  width: 100%;
-  padding: 30px;
-  background: #111111;
-  text-decoration: none;
 }

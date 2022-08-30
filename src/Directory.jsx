@@ -10,18 +10,33 @@ import PropTypes from 'prop-types';
 import './Directory.css';
 import { DelayedLink } from './Utils';
 
-function DirectoryMember({ member }) {
+function DirectoryMember({ member, dirData, setDirData }) {
+  /// take setDirData and mutate here..?
   const url = `/r/${member}`;
+
+  const deleteButton = function () {
+    const { listing } = dirData;
+    const idx = listing.indexOf(member);
+    listing.splice(idx, 1);
+    const newDirData = { listing };
+    setDirData(newDirData);
+    window.localStorage.setItem('dirData', JSON.stringify(newDirData));
+  };
   return (
-    <DelayedLink to={url}>
-      r/
-      {member}
-    </DelayedLink>
+    <div className="Directory-member">
+      <DelayedLink to={url}>
+        r/
+        {member}
+      </DelayedLink>
+      <button type="button" onClick={deleteButton}>X</button>
+    </div>
   );
 }
 
 DirectoryMember.propTypes = {
   member: PropTypes.string.isRequired,
+  dirData: PropTypes.object.isRequired,
+  setDirData: PropTypes.func.isRequired,
 };
 
 function ListingAddForm({ dirData, setDirData }) {
@@ -64,9 +79,9 @@ function Directory() {
   const dedupListing = new Set(dirData.listing);
   const listingDiv = [...dedupListing].sort().map(
     (member) => (
-      <div key={member} className="Directory-member">
+      <div key={member}>
         {' '}
-        <DirectoryMember member={member} />
+        <DirectoryMember member={member} dirData={dirData} setDirData={setDirData} />
       </div>
     ),
   );
