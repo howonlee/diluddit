@@ -10,7 +10,7 @@ Overall, this is a jank but can-be-used alpha. Treat as such. I haven't implemen
 
 A lot of stuff is hardcoded to the idiosyncrasies of how I like stuff. If you want to de-hardcode it PR's are vaguely welcome-ish. In particular, I linearize all the threads you get on there with a tree traversal that keeps parents, so we get nice threads. Maybe I should do that for the orange site too
 
-I won't add auth and posting (anything that makes me deal with CORS), tho, so don't ask. I also actually like karma being invisible forever and the subreddit view on `top?t=week` without options. Fork if you want to
+I won't add auth and posting (anything that makes me deal with CORS), tho, so don't ask. I also actually like karma being invisible forever and the subreddit view on `top?t=day` without options. Fork if you want to
 
 This is definitely like, one single option in a full-featured reddit client but a lot of the point is _not having features_ so that's probably a no go on any of the reddit clients I know of
 
