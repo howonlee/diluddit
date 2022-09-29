@@ -37,7 +37,7 @@ function prepRedditParams(searchParams) {
   const res = {
     raw_json: 1,
     sort: 'top',
-    t: 'week',
+    t: 'day',
   };
   if (searchParams.get('after')) {
     res.after = searchParams.get('after');
